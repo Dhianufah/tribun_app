@@ -48,3 +48,10 @@ langkah2 untuk mengkofigurasi API:
 2. Buat file.env di dalma route Masukan API yang sudah di dapatkan ke dalam sebuah variable yang bernama API_KEY
 3. Daftarkan file .env ke dalam file pubspec.yaml di dalam tag assets
 4. Daftarkan file .env ke dalam file .gitignore agar file .env tidak ikut terbawa ke stage remote ketika projek dilakukan proses git push
+
+
+tipe data json merupakan tipe data uyang di dalemnya map
+yang akan dikembalikan oleh API atau server ketika kita melakukan atau membuat sebuah requaest, diantaranya:
+
+ 1. status HTTP
+ 2. DATA YANG BERFORMAT JSON
