@@ -14,6 +14,7 @@ class NewsResponse {
       totalResults: json['totalResults'] ?? 0,
       // kode yang digunakan untuk mengkonversi data mentah dari server 
       // agar siap digunakan oleh aplikasi
+      // ini tuh inti dari semua data
       articles: (json['articles'] as List<dynamic>?)
                 ?.map((article) => NewsArticles.fromJson(article))
                 .toList() ?? [],

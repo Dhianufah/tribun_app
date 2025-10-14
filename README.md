@@ -30,7 +30,11 @@ REST dan API:
 ->generasi responts(status http dan data)
 ->penerimaan kliyen
 
-contoh dari 4 ini yaitu : request (user)->rest API-> server(si API dia nanya sama si server ini udh bagus blm)->http status 200 ok->rest API(disini dia langsung ke API soalnya kata si server udh bagus)->cliyen menerima
+contoh dari 4 ini yaitu : 
+ini tuh proses dari data klayen ke server
+request (user/klayen)->rest API-> server(si API dia nanya sama si server ini udh bagus blm)->http status 200 ok->rest API(disini dia langsung ke API soalnya kata si server udh bagus)->cliyen menerima
+klayen minta nya :get sama 
+server minta nya : data sama 
 
 folder controllers buat ngeget
 models buat model data
@@ -55,3 +59,18 @@ yang akan dikembalikan oleh API atau server ketika kita melakukan atau membuat s
 
  1. status HTTP
  2. DATA YANG BERFORMAT JSON
+
+
+ async dan await digunakan untuk menjalankan kode secara asynchronous (tidak langsung/berurutan), biasanya saat mengambil data dari internet atau melakukan proses yang butuh waktu.
+async dipakai di fungsi agar bisa menunggu proses lain selesai tanpa menghentikan aplikasi.
+await dipakai untuk menunggu hasil dari proses yang lama (misal: ambil data dari API).
+Intinya:
+Dengan async dan await, aplikasi tetap berjalan lancar sambil menunggu proses selesai di belakang layar.
+
+async fungsinya buat mengambil data dari API sama loading indikator
+
+
+temen nya famerikey yaitu querykey
+
+encoding = kalo ini tuh blm bisa di baca bahasanya masih susah (json)
+decoding = kalo yng ini bahasanya udah bisa di ubah jadi dari jron ke dart (dart)
