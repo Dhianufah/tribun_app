@@ -35,7 +35,7 @@ class NewsServices {
       // simplenya: kita daftarin base url + endpoint yang akan digunakan (URI ->Uniform Resource Identifier) Ngebentuk alamat lengkap server
       // parsing data adalah melempar dan mengambil data dari server
 
-      // jadi ini tuh kodenya uri dalemnya ada base url + endpoint trs replace itu 
+      // jadi ini tuh kodenya uri dalemnya ada base url + endpoint trs replace itu buat translatein bahasanya ke dart dari json
       final uri = Uri.parse('$_baseUrl${Constants.topHeadlines}')
           .replace(queryParameters: queryParams); // nanti bakal dari replace itu buat ganti query parameternya yang nantinya bakal ke server
           // mengambil data dari json ke UI

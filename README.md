@@ -74,3 +74,15 @@ temen nya famerikey yaitu querykey
 
 encoding = kalo ini tuh blm bisa di baca bahasanya masih susah (json)
 decoding = kalo yng ini bahasanya udah bisa di ubah jadi dari jron ke dart (dart)
+
+
+fungsi dari controller =
+1. memproses request
+2. ngehendling logik
+3. berinteraksi dengan model untuk mengambil dan menyimpan data
+
+
+macem2 state management flutter:
+-GetX = berita 
+-Provider
+-BLoC
