@@ -86,3 +86,5 @@ macem2 state management flutter:
 -GetX = berita 
 -Provider
 -BLoC
+
+switch case adalah jalan pintas buat sebuah kondisi tanpa harus menggunakan if else kondisi
