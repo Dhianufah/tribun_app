@@ -1,0 +1,2 @@
+catatan debug:
+cek lagi di bagian fetchTopHeadlines() dan di bagian getTopHeadlines()

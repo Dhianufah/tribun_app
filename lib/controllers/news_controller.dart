@@ -1,6 +1,3 @@
-
-
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tribun_app/models/news_articles.dart';
 import 'package:tribun_app/services/news_services.dart';
@@ -40,8 +37,8 @@ class NewsController extends GetxController {
         _isLoading.value = true;  // menandakan aplikasi sedang memuat berita
         _error.value = ''; // mengosongkan pesan error sebelum melakukan request baru
 
-        final response = await _newsServices.getTopHeadLines(
-          Category: category ?? _selectedCategory.value,
+        final response = await _newsServices.getTopHeadlines(
+          category: category ?? _selectedCategory.value,
           // kalau category null maka dia bakal ambil dari selected category
           // kalau tidak null maka dia bakal ambil dari category yang di kirim
           // ini buat ngecek kalo misalnya user ganti kategori berita
@@ -62,6 +59,13 @@ class NewsController extends GetxController {
         _isLoading.value = false; // menandakan aplikasi sudah selesai memuat berita 
       }     
 }
+
+@override
+  void onInit() {
+    super.onInit();
+    fetchTopHeadlines();
+  }
+
 Future<void> refreshNews() async {
   await fetchTopHeadlines();
   // ini buat refresh berita sesuai kategori yang sedang dipilih

@@ -5,38 +5,57 @@ import 'package:tribun_app/controllers/news_controller.dart';
 import 'package:tribun_app/routes/app_pages.dart';
 import 'package:tribun_app/utils/app_colors.dart';
 import 'package:tribun_app/widgets/category_chip.dart';
-import 'package:tribun_app/widgets/category_chip.dart';
 import 'package:tribun_app/widgets/loading_shimmer.dart';
 import 'package:tribun_app/widgets/news_card.dart';
 
 class HomeScreen extends GetView<NewsController>{
+  final RxInt selectedIndex = 0.obs;
   @override
   Widget build(BuildContext context) {
    return Scaffold(
+      // 🔥 cuma bagian AppBar ini aja yang diubah
       appBar: AppBar(
-        title: Text('News App'),
-        centerTitle: true,
+        backgroundColor: AppColors.onBackground,
+        elevation: 0,
+        toolbarHeight: 72,
+        title: Row(
+          children: [
+            const Icon(Icons.grid_view_rounded, color: Colors.white),
+            const SizedBox(width: 14),
+            Image.asset(
+             
+              'Assets/images/vector.png',
+               alignment: Alignment.center, // pastiin udah ditambah di pubspec.yaml
+              height: 70,
+              fit: BoxFit.contain,
+            ),
+          ],
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
-              onPressed: () => showSearchDialog(context),
-          )
+            icon: const Icon(Icons.search_rounded, color: Colors.white),
+            onPressed: () => showSearchDialog(context),
+          ),
+          const SizedBox(width: 4),
+          const Icon(Icons.notifications_none_rounded, color: Colors.white),
+          const SizedBox(width: 12),
         ],
       ),
+
       body: Column(
         children: [
           // categories
           Container(
-            height: 60,
-            color: Colors.white,
+            height: 45,
+            margin: const EdgeInsets.only(left: 16),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               itemCount: controller.categories.length,
               itemBuilder: (context, index) {
                 final category = controller.categories[index];
-                return Obx(() => CategoryChip( // obx itu observable
-                  label: category.capitalize ?? category, // ?? -> default value
+                return Obx(() => CategoryChip(
+                  label: category.capitalize ?? category,
                   isSelected: controller.selectedCategory == category,
                   onTap: () => controller.selecteCategory(category),
                 ));
@@ -45,37 +64,36 @@ class HomeScreen extends GetView<NewsController>{
           ),
           
           // news list
-          Expanded( // gabakal biarin ada runag kososng yang tersisa
-            child: Obx(() { // obx buat ngasi tau ui kalo ada perubahan
-            if (controller.isLoading) {
-              return LoadingShimmer();
-            }
-            if (controller.error.isNotEmpty) {
-              return _buildErrorWidget();
-            }
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading) {
+                return const LoadingShimmer();
+              }
+              if (controller.error.isNotEmpty) {
+                return _buildErrorWidget();
+              }
 
-            if (controller.articles.isEmpty) {
-              return _buildEmptyWidget();
-            }
+              if (controller.articles.isEmpty) {
+                return _buildEmptyWidget();
+              }
 
-            return RefreshIndicator(
-              onRefresh: controller.refreshNews,
-              child: ListView.builder(
-                padding: EdgeInsets.all(16),
-                itemCount: controller.articles.length,
-                itemBuilder: (context, index) {
-                  final article = controller.articles[index];
-                  return NewsCard(
-                    article: article, 
-                    onTap: () => Get.toNamed(
-                      Routes.NEWS_DETAIL,
-                      arguments: article
-                    )
-                  );
-                },
-              ),
-            );
-
+              return RefreshIndicator(
+                onRefresh: controller.refreshNews,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: controller.articles.length,
+                  itemBuilder: (context, index) {
+                    final article = controller.articles[index];
+                    return NewsCard(
+                      article: article, 
+                      onTap: () => Get.toNamed(
+                        Routes.NEWS_DETAIL,
+                        arguments: article
+                      ),
+                    );
+                  },
+                ),
+              );
             }) 
           )
         ],
@@ -87,7 +105,7 @@ class HomeScreen extends GetView<NewsController>{
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Icon(
             Icons.newspaper,
             size: 64,
@@ -119,13 +137,13 @@ class HomeScreen extends GetView<NewsController>{
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.error_outline,
             size: 64,
             color: AppColors.error,
           ),
-          SizedBox(height: 16),
-          Text(
+          const SizedBox(height: 16),
+          const Text(
             'Something went wrong',
             style: TextStyle(
               fontSize: 18,
@@ -133,24 +151,22 @@ class HomeScreen extends GetView<NewsController>{
               color: AppColors.textPrimary,
             ),
           ),
-          SizedBox(height: 8),
-          Text(
+          const SizedBox(height: 8),
+          const Text(
             'Please check your internet connection',
             style: TextStyle(
               color: AppColors.textSecondary,
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           ElevatedButton(
             onPressed: controller.refreshNews,
-            child: Text('Retry'),
+            child: const Text('Retry'),
           )
         ],
       ),
     );
   }
-
-
 
  void showSearchDialog(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
@@ -158,10 +174,10 @@ class HomeScreen extends GetView<NewsController>{
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Search News'),
+        title: const Text('Search News'),
         content: TextField(
           controller: searchController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: 'Please type a news..',
             border: OutlineInputBorder()
           ),
@@ -175,7 +191,7 @@ class HomeScreen extends GetView<NewsController>{
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -184,7 +200,7 @@ class HomeScreen extends GetView<NewsController>{
                 Navigator.of(context).pop();
               }
             },
-            child: Text('Search'),
+            child: const Text('Search'),
           )
         ],
       ),

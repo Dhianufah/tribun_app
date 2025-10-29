@@ -11,9 +11,9 @@ class NewsServices {
   static final String _apiKey = Constants.apikey;
 
 // fungsi yang bertujuan untuk mebuat request GET ke server
-  Future<NewsResponse> getTopHeadLines({
+  Future<NewsResponse> getTopHeadlines({
     String country = Constants.defaultCountry,
-    String? Category,
+    String? category,
     int page = 1,
     int pageSize = 20,
   }) async {
@@ -27,8 +27,8 @@ class NewsServices {
         };
 
         // statement yang akan dijalankan ketika category tidak null dan tidak kosong
-      if (Category != null && Category.isNotEmpty) {
-        queryParams['category'] = Category;
+      if (category != null && category.isNotEmpty) {
+        queryParams['category'] = category;
       };
 
       // berfungsi untuk parsing data dari json ke UI
@@ -54,12 +54,11 @@ class NewsServices {
        
       //  kode yang akan di jalankan jika request gagal ke API/ status http != 200
       } else {
-        throw Exception('Failed to load news, please trs again later');
+        throw Exception('Failed to load news: ${response.statusCode}');
       }
-      
       // kode dijalankan ketika terjadi error lain, selain yang sudah di buat di atas
     } catch (e) {
-      throw Exception('Another problem occurred, please try again later');
+       throw Exception('Network error: $e');
     }
   }
   // kurung kurawa biar jadi private
@@ -94,11 +93,11 @@ class NewsServices {
         return NewsResponse.fromJson(jsonData);
 
       } else {
-        throw Exception('Failed to load news, please try again later');
+        throw Exception('Failed to search news: ${response.statusCode}');
         
       }
     } catch (e) {
-      throw Exception('Another problem occurs, please try again later');
+       throw Exception('Network error: $e');
       
     }
   }

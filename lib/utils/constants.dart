@@ -1,14 +1,15 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Constants {
-  static const String baseUrl = 'https://newsapi.org/v2/';
+  static const String baseUrl = 'https://newsapi.org/v2';
 
   // GEt API Key from env variables
   static String get apikey => dotenv.env['API_KEY'] ?? '';
 
   // list of endpoints 
-  static const String topHeadlines = '/top-headlines';
-  static const String everything = '/everything';
+ static const String topHeadlines = '/top-headlines';
+static const String everything = '/everything';
+
 
   // list of categories
   static const List<String> categories = [

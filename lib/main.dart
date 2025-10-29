@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:news_app/bindings/app_bindings.dart';
-import 'package:news_app/routes/app_pages.dart';
-import 'package:news_app/utils/app_colors.dart';
+import 'package:get/get.dart';
+import 'package:tribun_app/bindings/app_bindings.dart';
+import 'package:tribun_app/routes/app_pages.dart';
+import 'package:tribun_app/utils/app_colors.dart';
 
 void main() async { // kalo async* maksudnya itu buat manggil semua, jadi ngambil semuanya ga cuma await
   runApp(NewsApp());
@@ -44,3 +44,4 @@ class NewsApp extends StatelessWidget {
     );
   }
 }
+

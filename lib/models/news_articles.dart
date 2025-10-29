@@ -7,7 +7,15 @@ class NewsArticles {
   final String? content;
   final Source? source;
 
- 
+  NewsArticles ({
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+    this.source
+  });
 
   factory NewsArticles.fromJson(Map<String, dynamic> json) {
     return NewsArticles(
@@ -32,8 +40,6 @@ class NewsArticles {
       'source': source?.tolJson(),
     };
   }
-
-  NewsArticles({required this.title, required this.description, required this.url, required this.urlToImage, required this.publishedAt, required this.content, required this.source});
 }
 
 class Source {
