@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:tribun_app/bindings/home_bindings.dart';
+import 'package:tribun_app/screens/account_screen.dart';
 import 'package:tribun_app/screens/home_screen.dart';
 import 'package:tribun_app/screens/news_detail_screen.dart';
 import 'package:tribun_app/screens/splash_screen.dart';
+import 'package:tribun_app/screens/saved_screen.dart';
 
 part 'app_routes.dart';
 // part adalah sebuah keyword yang dia bisa berdiri sendiri tanpa ada anak (induknya)
@@ -26,6 +28,14 @@ class AppPages {
     GetPage(
       name: _Paths.NEWS_DETAIL,
       page: () => NewsDetailScreen(),
+    ),
+    GetPage(
+      name: _Paths.SAVED,
+      page: () => SavedScreen(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT,
+      page: () => AccountScreen(),
     ),
   ];
 }

@@ -7,7 +7,7 @@ class CategoryChip extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const CategoryChip({super.key, required this.label, required this.isSelected, required this.onTap});
+  CategoryChip({super.key, required this.label, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

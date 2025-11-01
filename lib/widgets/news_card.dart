@@ -8,7 +8,7 @@ class NewsCard extends StatelessWidget {
   final NewsArticles article;
   final VoidCallback onTap;
 
-  const NewsCard({super.key, required this.article, required this.onTap});
+  NewsCard({super.key, required this.article, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,7 @@ class NewsCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16),
       elevation: 2,
       shadowColor: AppColors.cardShadow,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         // inkwell itu buat efek klik
         onTap: onTap,
@@ -28,7 +26,7 @@ class NewsCard extends StatelessWidget {
           children: [
             // image
             if (article.urlToImage != null)
-            // cek apakah urlToImage null atau tidak kalo null atau kosong ga usah di tampilkan
+              // cek apakah urlToImage null atau tidak kalo null atau kosong ga usah di tampilkan
               ClipRRect(
                 // cliprect itu buat munculin image jadi kalo pake ini image nya bakal lebih bagus
                 borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
@@ -44,7 +42,9 @@ class NewsCard extends StatelessWidget {
                     child: Center(
                       child: CircularProgressIndicator(
                         // circularprogressindicator itu buat loading kalo gambarnya belum ke load
-                        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.primary,
+                        ),
                       ),
                     ),
                   ),
@@ -62,47 +62,47 @@ class NewsCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // title, source news and date
-                    Row(
-                      children: [
-                        if (article.source?.name != null)...[
-                            // kalo artikenya ada nama sourcenya maka tampilkan
-                          Expanded(
-                            child: Text(
-                              article.source!.name!,
-                              // ini buat kalo namanya kepanjangan di batasin 1 baris doang.
-                              style: TextStyle(
-                                color: AppColors.primary,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            )
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // title, source news and date
+                  Row(
+                    children: [
+                      if (article.source?.name != null) ...[
+                        // kalo artikenya ada nama sourcenya maka tampilkan
+                        Expanded(
+                          child: Text(
+                            article.source!.name!,
+                            // ini buat kalo namanya kepanjangan di batasin 1 baris doang.
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(width: 8),
-                        ],
-                          //  timestamp
-                         if (article.publishedAt != null)
-                         Text(
-                          // ini tuh biar waktu yang tampil itu jadi waktu yang relatif misalnya 5 menit yang lalu, 2 jam yang lalu
-                          // sama biar enak di baca jadi kek lasngsung hari gitu (contoh a day ago)
-                          timeago.format(DateTime.parse(article.publishedAt!)),
-                          // pake parse karena publishedAt itu String jadi di parse dulu ke DateTime biar dia mau di panggil
+                        ),
+                        SizedBox(width: 8),
+                      ],
+                      //  timestamp
+                      if (article.publishedAt != null)
+                        Text(
+                          // timeago.format(DateTime.parse(article.publishedAt!))
+                          //ini tuh di ubah ke yang ini biar dia ga jadi string
+                          timeago.format(article.publishedAt!),
                           style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 12,
                           ),
-                         )
-                      ],
-                    ),
-                    SizedBox(height: 12),
-                    // title
-                    if (article.title != null)
+                        ),
+                    ],
+                  ),
+
+                  SizedBox(height: 12),
+                  // title
+                  if (article.title != null)
                     Text(
                       article.title!,
                       style: TextStyle(
@@ -115,9 +115,10 @@ class NewsCard extends StatelessWidget {
                       // maxlines ini fungsinya buat ngebates teksnya kalo kepanjangan jadi cuman 3 baris
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 8),
-                    // deskription
-                    if (article.description != null)
+
+                  SizedBox(height: 8),
+                  // deskription
+                  if (article.description != null)
                     // jika article deskription tidak null/kosong maka tampilkan
                     Text(
                       article.description!,
@@ -129,13 +130,13 @@ class NewsCard extends StatelessWidget {
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                ),
-              )
-          ] 
-        )
-      )   
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

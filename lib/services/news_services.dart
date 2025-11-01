@@ -7,7 +7,7 @@ import 'package:tribun_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 class NewsServices {
-  static const String _baseUrl = Constants.baseUrl;
+  static String _baseUrl = Constants.baseUrl;
   static final String _apiKey = Constants.apikey;
 
 // fungsi yang bertujuan untuk mebuat request GET ke server

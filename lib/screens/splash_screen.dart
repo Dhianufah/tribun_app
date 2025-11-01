@@ -12,9 +12,9 @@ class DashedCirclePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    const double dashWidth = 4;
-    const double dashSpace = 8;
-    const double dashCount = 30; // Jumlah total titik
+    double dashWidth = 4;
+    double dashSpace = 8;
+    double dashCount = 30; // Jumlah total titik
 
     final double radius = size.width / 2;
     final Offset center = Offset(size.width / 2, size.height / 2);
@@ -48,7 +48,7 @@ class DashedCirclePainter extends CustomPainter {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     // 1. Controller untuk Animasi Isi Tombol (Fill-Up)
     _fillController = AnimationController(
-      duration: const Duration(seconds: 4),
+      duration: Duration(seconds: 4),
       vsync: this,
     );
     _fillAnimation = Tween<double>(begin: 0, end: 1).animate(
@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     // 2. Controller untuk Animasi Putaran Lingkaran Titik-titik
     _rotateController = AnimationController(
-      duration: const Duration(seconds: 8), // Rotasi lebih lambat
+      duration: Duration(seconds: 8), // Rotasi lebih lambat
       vsync: this,
     );
     _rotateAnimation = Tween<double>(
@@ -106,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen>
   // Widget untuk tombol JELAJAHI BERITA yang sudah kita buat
   Widget _buildFillUpButton(double progress) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 40),
+      padding: EdgeInsets.symmetric(vertical: 14, horizontal: 40),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
         border: Border.all(
@@ -114,7 +114,7 @@ class _SplashScreenState extends State<SplashScreen>
           color:
               Color.lerp(
                 Colors.white.withOpacity(0.5),
-                const Color(0xFF4FACFE),
+                Color(0xFF4FACFE),
                 progress,
               ) ??
               Colors.white.withOpacity(0.5),
@@ -129,12 +129,12 @@ class _SplashScreenState extends State<SplashScreen>
           colors: [
             Colors.transparent, // Bagian kiri kosong
             Colors.transparent, // Hingga progress
-            const Color(0xFF4FACFE), // Mulai gradien
-            const Color(0xFF00F2FE), // Hingga akhir tombol
+            Color(0xFF4FACFE), // Mulai gradien
+            Color(0xFF00F2FE), // Hingga akhir tombol
           ],
         ),
       ),
-      child: const Text(
+      child: Text(
         "JELAJAHI BERITA",
         style: TextStyle(
           color: Colors.white,
@@ -149,8 +149,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     // Ukuran lingkaran akan sedikit lebih besar dari tombol.
-    const double buttonWidth = 280; // Sesuaikan dengan perkiraan lebar tombol
-    const double circleSize = 200; // Ukuran diameter lingkaran titik-titik
+    double buttonWidth = 280; // Sesuaikan dengan perkiraan lebar tombol
+    double circleSize = 200; // Ukuran diameter lingkaran titik-titik
 
     return Scaffold(
       body: Stack(
@@ -164,12 +164,12 @@ class _SplashScreenState extends State<SplashScreen>
                   Alignment.topCenter, // ini yang bikin gambar “naik ke atas”
             ),
           ),
-          
+
           // ini buat si lingkaran
           Align(
             alignment: Alignment.bottomCenter, // posisikan di bawah layar
             child: Padding(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 bottom: 120,
               ), // atur jarak dari bawah
               child: SizedBox(

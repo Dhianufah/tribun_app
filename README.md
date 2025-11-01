@@ -88,3 +88,16 @@ macem2 state management flutter:
 -BLoC
 
 switch case adalah jalan pintas buat sebuah kondisi tanpa harus menggunakan if else kondisi
+
+
+debug error:
+1. karena urutan yang di main.dart itu aku harusnya yang run di bawah bukan di atas soalnya kan urutannya manggil kode dulu baru masukin key nya baru run 
+WidgetsFlutterBinding.ensureInitialized(); // buat make sure, biar bener bener di eksekusi
+
+  // load environment variable first before running the app
+  await dotenv.load(fileName: '.env'); // butuh minta api key
+
+  runApp(NewsApp());
+
+  2. '.env' bukan '/.env'
+  3. kemungkinan besar pas lagi ngoding wifinya ga ada jadi ga semuanya ke import punya aku mainactivity nya ga keimport soalnya

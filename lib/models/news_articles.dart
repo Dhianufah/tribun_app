@@ -3,7 +3,7 @@ class NewsArticles {
   final String? description;
   final String? url;
   final String? urlToImage;
-  final String? publishedAt;
+  final DateTime? publishedAt;
   final String? content;
   final Source? source;
 
@@ -23,7 +23,10 @@ class NewsArticles {
       description: json['description'], 
       url: json['url'], 
       urlToImage: json['urlToImage'], 
-      publishedAt: json['publishedAt'], 
+      publishedAt: json['publishedAt'] != null
+      ? DateTime.tryParse(json['publishedAt'])
+      : null, 
+      // jadi ini tuh biar dia 
       content: json['content'], 
       source: json['source'] != null? Source.fromJson(json['source']) : null,
       );

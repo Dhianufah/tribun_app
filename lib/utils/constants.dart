@@ -6,10 +6,9 @@ class Constants {
   // GEt API Key from env variables
   static String get apikey => dotenv.env['API_KEY'] ?? '';
 
-  // list of endpoints 
- static const String topHeadlines = '/top-headlines';
-static const String everything = '/everything';
-
+  // list of endpoints
+  static const String topHeadlines = '/top-headlines';
+  static const String everything = '/everything';
 
   // list of categories
   static const List<String> categories = [
